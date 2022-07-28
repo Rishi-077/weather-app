@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import '../App.css'
 function SearchWeather ()
 {
-  const [ search, setSearch ] = useState( 'london' );
+  const [ search, setSearch ] = useState( 'new york' );
   const [ data, setData ] = useState( [] );
   const [ input, setInput ] = useState( ' ' );
   
@@ -70,7 +70,11 @@ function SearchWeather ()
   } else
   {
     return (
-      <div>...Loading</div>
+      <div class="text-center justify-center">
+         <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     );
   }
   
@@ -104,16 +108,18 @@ function SearchWeather ()
 
   return (
     <div>
-      <div className="container mt-3">
+      <div className="container mt-4">
+        <h1 className="h1-header">Weather app</h1>
         <div className="row justify-content-center">
-          <div className="col-md-5">
-            <div class="card text-white text-center border-0">
-              <img src={`https://source.unsplash.com/600x900/?${data.weather[0].main}`} class="card-img" alt="image" />
+          <div className="col-xl-5">
+            <div class="card text-white text-center border-3 border-dark">
+              <img src={`https://source.unsplash.com/600x900/?${data.weather[0].main}`} class="card-img" alt="..." />
               <div class="card-img-overlay">
-                <form onSubmit = {handleSubmit}>
-                  <div class="input-group mb-4 w-75 mx-auto">
-                    <input type="text"
-                      // class="form-control"
+                <form onSubmit={handleSubmit}>
+                  <div class="input-group mb-3 mt-2 w-75 mx-auto">
+                    <input
+                      type="text"
+                      class="form-control py-2"
                       placeholder="search city" aria-label="search city" aria-describedby="basic-addon2"
                       name="search"
                       value={input}
@@ -121,15 +127,16 @@ function SearchWeather ()
                       required
                     />
                     <button
+                      class="input-group-text"
                        type='submit'
-                    // class="input-group-text"
                     >
                       <i class="fa fa-search"></i>
                     </button>
                   </div>
                 </form>
-                <div className="bg-dark bg-opacity-50 py-3">
+                <div className="bg-dark bg-opacity-50 py-2">
                   <h2 class="card-title">{data.name}</h2>
+                   <h3 className="card-title">{ data.sys.country }</h3>
                   <p class="card-text lead">
                     {day}, {month} {date}, {year}
                     <br />
@@ -137,9 +144,11 @@ function SearchWeather ()
                   </p>
                   <hr />
                   <i className={`fa ${ emoji } fa-4x`}></i>
-                  <h1 className="fw-bolder mb-5">{temp} &deg;C</h1>
+                  <h1 className="fw-bolder mb-3">{temp} &deg;C</h1>
                   <p className="lead fw-bolder mb-1">{data.weather[ 0 ].main}</p>
                   <p className="lead">{temp_min}&deg;C | {temp_max}&deg;C</p>
+                  <p className="lead">Wind Speed - { data.wind.speed } Km/h</p>
+
                 </div>
               </div>
             </div>
