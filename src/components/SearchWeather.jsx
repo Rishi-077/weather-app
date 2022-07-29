@@ -56,10 +56,10 @@ function SearchWeather ()
       emoji = "fa-bold";
     } else if ( data.weather[ 0 ].main == 'Drizzle' )
     {
-      emoji = "fa-cloud-rain";
+      emoji = "fa-cloud-drizzle";
     } else if ( data.weather[ 0 ].main == 'Rain' )
     {
-      emoji = "fa-cloud-shower-heavy";
+      emoji = "fa-cloud-showers-heavy";
     } else if ( data.weather[ 0 ].main == 'Snow' )
     {
       emoji = "fa-snow-flake";
@@ -112,7 +112,7 @@ function SearchWeather ()
         <h1 className="h1-header">Weather app</h1>
         <div className="row justify-content-center">
           <div className="col-xl-5">
-            <div class="card text-white text-center border-3 border-dark">
+            <div class="card text-white text-center border-none">
               <img src={`https://source.unsplash.com/600x900/?${data.weather[0].main}`} class="card-img" alt="..." />
               <div class="card-img-overlay">
                 <form onSubmit={handleSubmit}>
@@ -120,7 +120,7 @@ function SearchWeather ()
                     <input
                       type="text"
                       class="form-control py-2"
-                      placeholder="search city" aria-label="search city" aria-describedby="basic-addon2"
+                      placeholder="search your city" aria-label="search city" aria-describedby="basic-addon2"
                       name="search"
                       value={input}
                       onChange={(e) => setInput( e.target.value )}
@@ -143,7 +143,7 @@ function SearchWeather ()
                     {time} 
                   </p>
                   <hr />
-                  <i className={`fa ${ emoji } fa-4x`}></i>
+                  <i className={`fa ${emoji} fa-4x`}></i>
                   <h1 className="fw-bolder mb-3">{temp} &deg;C</h1>
                   <p className="lead fw-bolder mb-1">{data.weather[ 0 ].main}</p>
                   <p className="lead">{temp_min}&deg;C | {temp_max}&deg;C</p>
